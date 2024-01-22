@@ -1,0 +1,50 @@
+#3
+SELECT name,price
+FROM Product
+WHERE date_of_delivery BETWEEN DATEADD(MONTH,-1,GETDATE()) AND GETDATE()
+
+#4
+SELECT *
+FROM Product
+WHERE category = 'Кондитерские изделия' AND NOT producer = 'Roshen'
+
+#5
+SELECT *
+FROM Product
+WHERE category LIKE '%А%' AND name LIKE 'К%'
+
+#6
+SELECT *
+FROM Product
+WHERE name LIKE '[В-Л]%' 
+
+#7
+SELECT *
+FROM Product
+WHERE price < 50 and date_of_delivery BETWEEN '2023-10-01' AND DATEADD(DAY,-1,GETDATE())
+
+#8
+SELECT *
+FROM Product
+WHERE category = 'Безалкогольные напитки' AND quantity > 100
+
+#9
+SELECT *
+FROM Product
+WHERE price BETWEEN 100 AND 200
+ORDER BY price ASC
+
+#14
+SELECT *
+FROM Product
+WHERE name LIKE '%о%о%о%'
+
+#15
+DELETE
+FROM Product
+WHERE name LIKE '_____'
+
+#17
+SELECT TOP 5 *
+FROM Product
+ORDER BY PRICE DESC
