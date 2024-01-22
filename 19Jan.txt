@@ -1,0 +1,29 @@
+#1
+DECLARE @a float = 10.4
+DECLARE @b float = 5.67
+DECLARE @c float = 23.23
+
+PRINT (@a + @b + @c) / 3
+
+#2
+DECLARE @cur TIME = SYSDATETIME()
+if @cur BETWEEN '12:00:00' AND '18:00:00'
+BEGIN
+	PRINT 'Добрый день'
+END
+ELSE
+BEGIN
+	PRINT 'Добрый вечер'
+END
+
+#3
+DECLARE @num int = 555555
+
+if @num / 100000 + @num / 10000 % 10 + @num / 1000 % 10 = @num / 100 % 10 + @num / 10 % 10 + @num % 10
+BEGIN
+	PRINT 'Счастливый билет'
+END
+ELSE
+BEGIN
+	PRINT 'Не повезло!'
+END
