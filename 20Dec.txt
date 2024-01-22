@@ -1,0 +1,38 @@
+#1
+SELECT name, CAST(ROUND(price - price * discount / 100, 2) AS nvarchar) + ' грн. ' AS [Цена со скидкой]
+FROM Product
+WHERE name LIKE '%хлеб%' OR name LIKE '%молоко%'
+
+#2
+SELECT *
+FROM Product
+WHERE date_of_delivery BETWEEN DATEADD(DAY,-1,GETDATE()) AND GETDATE() AND quantity > 10
+
+#10
+UPDATE Product
+SET price = price * 0.95
+
+#11
+UPDATE Product
+SET date_of_delivery = GETDATE()
+WHERE date_of_delivery is NULL
+
+#12
+DELETE
+FROM Product
+WHERE quantity BETWEEN 70 AND 100
+
+#13
+DELETE
+FROM Product
+WHERE category = 'алкогольные напитки' OR category = 'кондитерские изделия'
+
+#16
+DELETE
+FROM Product
+WHERE date_of_delivery < DATEADD(MONTH,-3,GETDATE())
+
+#18
+DELETE
+FROM Product
+WHERE producer IS NULL OR discount > 10
