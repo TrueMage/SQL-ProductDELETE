@@ -1,0 +1,28 @@
+#1
+CREATE OR ALTER VIEW TeacherLends AS 
+SELECT t.first_name, t.last_name, b.name
+FROM Teacher t 
+JOIN T_Cards tc ON tc.id_teacher = t.id
+JOIN Book b ON tc.id_book = b.id
+
+#2
+CREATE OR ALTER VIEW StudentNoLends AS 
+SELECT s.first_name, s.last_name
+FROM Student s
+EXCEPT
+SELECT s.first_name, s.last_name
+FROM S_Cards sc
+JOIN Student s ON sc.id_student = s.id
+
+#3
+SELECT l.first_name, l.last_name, COUNT(sc.id_librarian) AS [COUNT]
+FROM S_Cards sc
+JOIN Librarian l ON sc.id_librarian = L.id
+GROUP BY l.first_name, l.last_name
+
+#4
+SELECT l.first_name, l.last_name, COUNT(sc.id_librarian) AS [COUNT]
+FROM S_Cards sc
+JOIN Librarian l ON sc.id_librarian = L.id
+WHERE sc.date_in IS NOT NULL
+GROUP BY l.first_name, l.last_name
