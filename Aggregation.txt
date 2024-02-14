@@ -1,0 +1,45 @@
+#1
+SELECT p.name, AVG(s.price)
+FROM Sale s
+JOIN Product p ON s.id_product = p.id
+GROUP BY p.name
+HAVING AVG(s.price) > 50
+
+#2
+SELECT c.name, COUNT(p.name), AVG(d.price)
+FROM Delivery d
+JOIN Product p ON d.id_product = p.id
+JOIN Category c ON p.id_category = c.id
+GROUP BY c.name
+HAVING AVG(d.price) > 100
+
+#3
+SELECT s.name, d.date_of_delivery, MIN(d.price), p.name
+FROM Delivery d
+JOIN Product p ON d.id_product = p.id
+JOIN Supplier s ON d.id_supplier = s.id
+GROUP BY s.name, d.date_of_delivery, p.name
+ORDER BY MIN(d.price)
+
+#4
+SELECT pr.name, a.street, c.name, r.name, ctr.name, COUNT(p.name)
+FROM Product p
+JOIN Producer pr ON p.id_producer = pr.id
+JOIN Address a ON pr.id_address = a.id
+JOIN City c ON a.id_city = c.id
+JOIN Region r ON c.id_region = r.id
+JOIN Country ctr ON ctr.id = r.id_country
+JOIN Sale s ON s.id_product = p.id
+GROUP BY pr.name, a.street, c.name, r.name, ctr.name
+HAVING SUM(s.price) BETWEEN 500 AND 20000
+
+#5
+SELECT c.name, COUNT(p.name), d.price
+FROM Product p 
+JOIN Category c ON p.id_category = c.id
+JOIN Delivery d ON d.id_product = p.id
+JOIN Supplier s ON d.id_supplier = s.id
+GROUP BY c.name, d.price, d.id_supplier
+HAVING d.price > 400 AND d.id_supplier < 3
+
+Не совсем понял "условие" в текст задание - сделал так. Надеюсь, что нормик!
